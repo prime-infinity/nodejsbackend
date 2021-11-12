@@ -12,3 +12,53 @@ module.exports = {
 } for exporting multiple files
 
 const { people,ages } = require('./otherjsfile) //destructuring in main.js file
+
+
+const os =  require('os')
+
+console.log(os,os.platform(), os.homedir())
+
+
+//the filesysem core module to create,read,and delete local files
+const fs = require('fs')
+
+//reading files
+fs.readFile('./relativepath/file.exten', (err,data) => {
+    if(err){
+        console.log(err)
+    }
+    console.log(data.toString()) //data is a buffer
+})
+
+
+//writing files
+fs.writeFile('./relativepath/file.ext', 'data to write', () => {
+
+}) //if file dosent exist, it will be created
+
+//directerites
+if(!fs.existsSync('./dirToCreate')){ //this checks if file already exists
+    fs.mkdir('./dirToCreate',(er) => {
+        if(err){
+            console.log(err)
+        }
+        console.log("folder created")
+    }) //cannot be run more than once, if folder exist, there will be issuees
+}else{
+    fs.rmdir('./dirToremovr', (err) => { //deleting folder
+        if(err){
+            console.log(err)
+        }
+        console.log("folder deleted")
+    })
+}
+
+//deleting files
+if(fs.existsSync('./relativepath/filetodelete.ext')) {
+    fs.unlink('./relativepath/filetodelete', (err) => {
+        if(err){
+            console.log(err)
+        }
+        console.log("file deleted")
+    })
+}
