@@ -62,3 +62,22 @@ if(fs.existsSync('./relativepath/filetodelete.ext')) {
         console.log("file deleted")
     })
 }
+
+
+//streams and buffer
+//readStreams and writeStreams
+
+//read streams
+const readStream = fs.createReadStream('./relativepath/filetoread.ext', {encoding:'utf8 '})
+//write streams
+const writeStream = fs.createWriteStream('./relativepath/filetowriteto.ext')
+readStream.on('data', (chunk) => {
+    console.log(chunk)
+    writeStream.write(chunk)
+})
+
+//piping
+//when a pipe is used, it must be from a readable stream to a writable stream
+readStream.pipe(writeStream) //very simple
+
+//duplex strems alow for reading and writing at same time,can research later
