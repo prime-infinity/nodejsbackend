@@ -1,0 +1,5 @@
+there is a "global" object, similar to "window" when doing client side
+
+console.log(__dirname) this is the absolute path of the current folder
+console.log(__filename) absolute path of the current folder with filename added 
+
