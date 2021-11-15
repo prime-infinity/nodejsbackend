@@ -1,7 +1,6 @@
 //without framework
 const http = require('http');
 const fs = require('fs');
-const path = require('path/posix');
 
 const server = http.createServer((req,res)=> { //this callback function is going to run for every request
     console.log(req.url, req.method)
