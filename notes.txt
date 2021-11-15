@@ -81,3 +81,13 @@ readStream.on('data', (chunk) => {
 readStream.pipe(writeStream) //very simple
 
 //duplex strems alow for reading and writing at same time,can research later
+
+
+//redirects in express
+app.get('/about-us',(req,res) => {
+    res.redirect('/about')
+})
+
+//very important
+middleware runs from top to bottom of express code as long as 
+a response has not yet been sent 
