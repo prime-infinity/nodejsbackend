@@ -18,7 +18,7 @@ mongoose.connect(dbURL, { useNewUrlParser:true, useUnifiedTopology:true })
 //mongoose and mongo sandbox routes
 app.get('/add-blog',(req, res)=>{
     const blog = new Blog({ //this creates a new instance of the blog object, just like in laravel
-        title:'new blog',
+        title:'new blog2',
         snippet:'about my new blog',
         body:'more about my new blog'
     });
@@ -28,6 +28,16 @@ app.get('/add-blog',(req, res)=>{
         res.send(result)
     })
     .catch((err) => {
+        console.log(err)
+    })
+})
+
+app.get('/all-blogs', (req,res)=> {
+    Blog.find()
+    .then((results) => {
+        res.send(results)
+    })
+    .catch((err)=> {
         console.log(err)
     })
 })
