@@ -91,3 +91,5 @@ app.get('/about-us',(req,res) => {
 //very important
 middleware runs from top to bottom of express code as long as 
 a response has not yet been sent 
+
+//in mongoose, schemas are identical to migrations in laravel and models are the same
