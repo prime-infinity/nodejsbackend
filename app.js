@@ -33,7 +33,7 @@ app.get('/add-blog',(req, res)=>{
 })
 
 app.get('/all-blogs', (req,res)=> {
-    Blog.find()
+    Blog.find().sort({createdAt:-1})
     .then((results) => {
         res.send(results)
     })
@@ -41,7 +41,17 @@ app.get('/all-blogs', (req,res)=> {
         console.log(err)
     })
 })
-  
+
+app.get('/single-blog', (req, res) => {
+    Blog.findById('idstringofblog')
+    .then((result) => {
+        res.send(result)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
 /*app.use((req,res, next) => {
     console.log("new request mande:")
     console.log(req.hostname)
