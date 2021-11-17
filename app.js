@@ -3,6 +3,8 @@ const mongoose =  require('mongoose')
 const Blog = require('./models/blog') //get blog model
 
 const app = express()
+app.use(express.urlencoded({extended:true })) //might not needed, parse to json
+
 
 //connect to mongodb
 const dbURL = 'mongodb+srv://prime:eOxVqIvXaRhIQ9kV@nodebackend1.omiaq.mongodb.net/database1?retryWrites=true&w=majority'
@@ -49,6 +51,42 @@ app.get('/single-blog', (req, res) => {
     })
     .catch((err) => {
         console.log(err)
+    })
+})
+
+app.post('/blogs', (req, res) => {
+    const blog = new Blog(req.body) //creates a new blog instance with all data
+    
+    blog.save()
+    .then((results)=> {
+        //do something else with success 
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+app.get('/blogs/:id', (req,res)=>{
+    const id = req.params.id 
+    Blog.findById(id)
+    .then(results => {
+        //do something with results
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
+app.delete('/blogs/:id', (req,res) => {
+    const id = req.params.id;
+
+    Blog.findByIdAndDelete()
+    .then(results => {
+        //do something
+        res.json() //send json data
+    })
+    .catch(err => {
+
     })
 })
 
