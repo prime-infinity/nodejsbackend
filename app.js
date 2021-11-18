@@ -1,6 +1,6 @@
 const express =  require('express')
 const mongoose =  require('mongoose')
-const Blog = require('./models/blog') //get blog model
+const blogRoutes = require('./routes/blogRoutes')
 
 const app = express()
 app.use(express.urlencoded({extended:true })) //might not needed, parse to json
@@ -17,8 +17,10 @@ mongoose.connect(dbURL, { useNewUrlParser:true, useUnifiedTopology:true })
     console.log(err)
 })
 
-//mongoose and mongo sandbox routes
-app.get('/add-blog',(req, res)=>{
+//blog routes
+app.use('blogs',blogRoutes) //url scoping
+
+/*app.get('/add-blog',(req, res)=>{
     const blog = new Blog({ //this creates a new instance of the blog object, just like in laravel
         title:'new blog2',
         snippet:'about my new blog',
@@ -32,63 +34,7 @@ app.get('/add-blog',(req, res)=>{
     .catch((err) => {
         console.log(err)
     })
-})
-
-app.get('/all-blogs', (req,res)=> {
-    Blog.find().sort({createdAt:-1})
-    .then((results) => {
-        res.send(results)
-    })
-    .catch((err)=> {
-        console.log(err)
-    })
-})
-
-app.get('/single-blog', (req, res) => {
-    Blog.findById('idstringofblog')
-    .then((result) => {
-        res.send(result)
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-})
-
-app.post('/blogs', (req, res) => {
-    const blog = new Blog(req.body) //creates a new blog instance with all data
-    
-    blog.save()
-    .then((results)=> {
-        //do something else with success 
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-})
-
-app.get('/blogs/:id', (req,res)=>{
-    const id = req.params.id 
-    Blog.findById(id)
-    .then(results => {
-        //do something with results
-    })
-    .catch(err => {
-        console.log(err)
-    })
-})
-
-app.delete('/blogs/:id', (req,res) => {
-    const id = req.params.id;
-
-    Blog.findByIdAndDelete()
-    .then(results => {
-        //do something
-        res.json() //send json data
-    })
-    .catch(err => {
-
-    })
-})
+})*/
 
 /*app.use((req,res, next) => {
     console.log("new request mande:")
