@@ -8,6 +8,9 @@ app.use(express.urlencoded({extended:true })) //might not needed, parse to json
 
 //connect to mongodb
 const dbURL = 'mongodb+srv://prime:eOxVqIvXaRhIQ9kV@nodebackend1.omiaq.mongodb.net/database1?retryWrites=true&w=majority'
+/**
+ * the details above should be replaced with the appro from mongo
+ */
 mongoose.connect(dbURL, { useNewUrlParser:true, useUnifiedTopology:true })
 .then((res) => {
     console.log("connected")
