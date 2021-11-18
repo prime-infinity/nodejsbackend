@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended:true })) //might not needed, parse to json
 
 
 //connect to mongodb
-const dbURL = 'mongodb+srv://prime:eOxVqIvXaRhIQ9kV@nodebackend1.omiaq.mongodb.net/database1?retryWrites=true&w=majority'
+const dbURL = 'mongodbaccessurl'
 /**
  * the details above should be replaced with the appro from mongo
  */
